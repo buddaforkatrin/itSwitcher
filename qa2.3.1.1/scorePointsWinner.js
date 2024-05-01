@@ -28,5 +28,5 @@ for (elementKey in players) {
 }
 console.log(scorePointsArray);
 
-let MaxOfScorePoints = Math.max(...numArray);
+let MaxOfScorePoints = Math.max(...scorePointsArray);
 console.log(MaxOfScorePoints);
