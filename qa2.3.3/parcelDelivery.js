@@ -6,7 +6,7 @@ const BD = [
   {
     id: 13214,
     code: userSmsCode,
-    userParcelPrice,
+    price: userParcelPrice,
     locker: parcelLocker.indexOf(userSmsCode),
   },
 ];
