@@ -2,7 +2,9 @@ let userBalance = 500;
 const userParcelPrice = 100;
 const parcelLocker = [null, null, null, "1432HGF", null];
 const userSmsCode = "A001DFX0";
-const BD = [{ id: "dsdsd", price: 900 }];
+const BD = [
+  { id: "dsdsd", price: 900, locker: parcelLocker.indexOf(userSmsCode) },
+];
 
 function getMessage(code) {
   if (parcelLocker.indexOf(code) != -1) {
