@@ -3,26 +3,33 @@ const parcelLocker = [null, null, null, "1432HGF", null];
 const userSmsCode = "A001DFX0";
 const BD = [
   {
-    id: 13214,
-    code: userSmsCode,
+    id: "1432HGF",
+    code: "A001DFX0",
     price: 100,
-    locker: parcelLocker.indexOf(userSmsCode),
+  },
+  {
+    id: "1234AAA",
+    code: "B325DHH0",
+    price: 50,
   },
 ];
 
 function getMessage(code) {
-  const parcelIndex = parcelLocker.indexOf(code);
-  if (parcelIndex != -1) {
-    const parcel = BD.find((item) => item.code === code);
+  const parcel = BD.find((item) => item.code === code);
+  const locker = Boolean(parcel) && parcelLocker.indexOf(parcel.id) + 1;
+
+  if (locker) {
     userBalance -= parcel.price;
     console.log(
-      `Заберите посылку ${code} из ячейки ${parcelIndex}. Ваш счет составляет: ${userBalance}ед.`
+      `Заберите посылку ${parcel.id} из ячейки ${locker}. Ваш счет составляет: ${userBalance}ед.`
     );
-  } else {
-    console.log(
-      "Посылка с данным кодом не найдена. Проверьте правильность введенного кода или обратитесь в нашу техническую поддержку."
-    );
+
+    return;
   }
+
+  console.log(
+    "Посылка с данным кодом не найдена. Проверьте правильность введенного кода или обратитесь в нашу техническую поддержку."
+  );
 }
 
 getMessage(userSmsCode);
