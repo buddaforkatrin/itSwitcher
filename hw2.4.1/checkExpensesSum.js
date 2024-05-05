@@ -16,18 +16,35 @@ let expensesExamples = [
   },
 ];
 
-function yearlyExpensesSum(expenses) {
-  let filteredExpenses = expenses.yearlyExpenses.filter(
-    (number) => number > 1000
-  );
-  console.log("filtered array of expenses:", filteredExpenses);
+function getMonthsOfLowExpenses(expenses) {
+  const lowMonths = [];
+  expenses.forEach((item, i) => {
+    if (item <= 1000) {
+      lowMonths.push(
+        new Date((i + 1).toString()).toLocaleString("default", {
+          month: "short",
+        })
+      );
+    }
+  });
+
+  return lowMonths;
+}
+
+function getYearlyExpensesSum(expenses) {
   let sum = 0;
-  for (i = 0; i < filteredExpenses.length; i++) {
-    sum += filteredExpenses[i];
-  }
-  console.log("Sum of filtered expenses is = ", sum);
+  expenses.forEach((item) => {
+    if (item > 1000) {
+      sum += item;
+    }
+  });
+
+  return sum;
 }
 
 expensesExamples.forEach((expenses) => {
-  yearlyExpensesSum(expenses);
+  const sum = getYearlyExpensesSum(expenses.yearlyExpenses);
+  console.log("Sum of filtered expenses is = ", sum);
+  const lowMonths = getMonthsOfLowExpenses(expenses.yearlyExpenses);
+  console.log("Months of low expenses: ", lowMonths);
 });
